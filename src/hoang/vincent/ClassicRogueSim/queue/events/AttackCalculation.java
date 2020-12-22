@@ -24,7 +24,7 @@ public class AttackCalculation {
         double critSuppression = 4.8;
 
         double critCap = 100.0 - 40.0 - missChance - dodgeChance + hitChance - critSuppression;
-        double rngRoll = ThreadLocalRandom.current().nextDouble(0.01, 100.0);
+        double rngRoll = ThreadLocalRandom.current().nextDouble(100.0) + 1;
 
         if (rngRoll <= 40.0) {
             return AttackResult.GLANCE;
@@ -72,6 +72,11 @@ public class AttackCalculation {
         // If the target is a player
         // Note this is a placeholder that assumes the player being attacked has 0 +defense on items
         return 5 + (300 - attackerSkill) * 0.04;
+    }
+
+    public static double getCriticalStrike(double damage) {
+        // TODO: add talents
+        return damage * 2;
     }
 
     public static double getGlancingBlow(double damage, int targetLevel, int attackerSkill) {
